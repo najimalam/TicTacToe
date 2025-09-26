@@ -4,20 +4,29 @@ import java.util.List;
 
 public class Board {
 
-    private int size;
-    private List<List<Cell>> grid;
+    private int dimension;
+    private List<List<Cell>> board;
     
-    public int getSize() {
-        return size;
+    public int getDimension() {
+        return dimension;
     }
-    public void setSize(int size) {
-        this.size = size;
+    public void setDimension(int dimension) {
+        this.dimension = dimension;
     }
-    public List<List<Cell>> getGrid() {
-        return grid;
+    public List<List<Cell>> getBoard() {
+        return board;
     }
-    public void setGrid(List<List<Cell>> grid) {
-        this.grid = grid;
+    public void setGrid(List<List<Cell>> board) {
+        this.board = board;
+    }
+
+    public void printBoard(){
+        for(List<Cell> row : board){
+            for(Cell cell : row){
+                cell.display();
+            }
+            System.out.println();
+        }
     }
     
 }

@@ -1,8 +1,13 @@
 package models;
 
-public class BotPlayer {
+public class BotPlayer extends Player {
     
     private BotDifficultyLevel botDifficultyLevel;
+
+    public BotPlayer(String name, char symbol, BotDifficultyLevel botDifficultyLevel) {
+        super(name, symbol, PlayerType.BOT);
+        this.botDifficultyLevel = botDifficultyLevel;
+    }
 
     public BotDifficultyLevel getBotDifficultyLevel() {
         return botDifficultyLevel;

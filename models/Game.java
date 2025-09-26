@@ -2,6 +2,9 @@ package models;
 
 import java.util.List;
 
+import straregies.winningStrategies.WinningStrategy;
+import straregies.winningStrategies.WinningStrategyFactory;
+
 public class Game {
 
     private Board board;
@@ -9,59 +12,70 @@ public class Game {
     private List<Move> moves;
     private int currentPlayerIndex;
     private GameState gameState;
+    private List<WinningStrategyType> winningStrategyTypes;
+    private List<WinningStrategy> winningStrategies;
 
+    private Game(Builder builder){
+        this.board = new Board();
+        this.board.setDimension(builder.dimension);
+        this.players = builder.players;
+        this.currentPlayerIndex = 0;
+        this.gameState = GameState.IN_PROGRESS;
+        this.winningStrategyTypes = builder.winningStrategyTypes;
+        // Initialize winning strategies based on types
+        for(WinningStrategyType type : this.winningStrategyTypes){
+            this.winningStrategies.add(WinningStrategyFactory.getWinningStrategy(type));
+        }
+    }
 
     public Board getBoard() {
         return board;
     }
-
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-
     public List<Player> getPlayers() {
         return players;
     }
-
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-
     public List<Move> getMoves() {
         return moves;
     }
-
-
-    public void setMoves(List<Move> moves) {
-        this.moves = moves;
-    }
-
-
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
-
-
-    public void setCurrentPlayerIndex(int currentPlayerIndex) {
-        this.currentPlayerIndex = currentPlayerIndex;
-    }
-
-
     public GameState getGameState() {
         return gameState;
     }
 
-
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
+    public static Builder getBuilder(){
+        return new Builder();
     }
 
 
-    public void start(){
-        System.out.println("Game Started!");
+    public static class Builder{
+
+        private int dimension;
+        private List<Player> players;
+        private List<WinningStrategyType> winningStrategyTypes;
+
+        public Builder setBoard(int dimension){
+            this.dimension = dimension;
+            return this;
+        }
+
+        public Builder setPlayers(List<Player> players){
+            this.players = players;
+            return this;
+        }
+
+        public Builder setWinningStrategyType(List<WinningStrategyType> winningStrategyTypes){
+            this.winningStrategyTypes = winningStrategyTypes;
+            return this;
+        }
+
+        public Game build(){
+            return new Game(this);
+        }
+
+
     }
+
+
 }

@@ -5,7 +5,14 @@ public class Cell {
     private int row;
     private int col;
     private CellState state;
+    private Player player;
     
+    public Player getPlayer() {
+        return player;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
     public int getRow() {
         return row;
     }
@@ -23,6 +30,14 @@ public class Cell {
     }
     public void setState(CellState state) {
         this.state = state;
+    }
+
+    public void display(){
+        if(this.player == null){
+            System.out.print("|--|");
+        }else{
+            System.out.println("| "+this.player.getSymbol().getaChar()+" |");
+        }
     }
 
     
