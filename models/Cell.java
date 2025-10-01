@@ -6,6 +6,13 @@ public class Cell {
     private int col;
     private CellState state;
     private Player player;
+
+    public Cell(int row, int col, Player player) {
+        this.row = row;
+        this.col = col;
+        this.player = player;
+        this.state = CellState.FILLED;
+    }
     
     public Player getPlayer() {
         return player;

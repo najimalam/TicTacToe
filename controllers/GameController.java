@@ -8,9 +8,9 @@ import models.*;
 public class GameController {
     // GameController logic here
 
-    public void startGame(int dimension, List<Player> players, List<WinningStrategyType> winningStrategyTypes) {
+    public Game startGame(int dimension, List<Player> players, List<WinningStrategyType> winningStrategyTypes) {
         // Start game logic
-        Game.getBuilder()
+        return Game.getBuilder()
                 .setBoard(dimension)
                 .setPlayers(players)
                 .setWinningStrategyType(winningStrategyTypes)
@@ -24,8 +24,13 @@ public class GameController {
         board.printBoard();
     }
     //make move
-    public void makeMove() throws InvalidMarkException{}
+    public void makeMove(Game game) throws InvalidMarkException{
+        game.getMoves();
+    }
     //game state
+    public GameState getGameState(Game game){
+        return game.getGameState();
+    }
     //undo move
     //check winner
 

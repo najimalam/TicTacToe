@@ -48,6 +48,14 @@ public class Game {
         return new Builder();
     }
 
+    public void makeMove(){
+        Player currentPlayer = players.get(currentPlayerIndex);
+
+        System.out.println("This is " + currentPlayer.getName() +"is move!");
+
+        Move move = currentPlayer.makeMove(board);
+    }
+
 
     public static class Builder{
 
