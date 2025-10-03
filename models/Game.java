@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import exceptions.InvalidMoveException;
 import straregies.winningStrategies.WinningStrategy;
 import straregies.winningStrategies.WinningStrategyFactory;
 
@@ -48,12 +49,31 @@ public class Game {
         return new Builder();
     }
 
-    public void makeMove(){
+    private boolean isValidMove(Move move){
+        Cell cell = move.getCell();
+        int row = cell.getRow();
+        int col = cell.getCol();
+
+        if(row < 0 || row >= board.getDimension() || col < 0 || col >= board.getDimension()){
+            return false;
+        }
+
+        return true;
+    }
+
+    public void makeMove() throws InvalidMoveException{
         Player currentPlayer = players.get(currentPlayerIndex);
 
         System.out.println("This is " + currentPlayer.getName() +"is move!");
 
         Move move = currentPlayer.makeMove(board);
+
+        // Validate move
+        if(!isValidMove(move)){
+            throw new InvalidMoveException("Invalid Move! Try again.");
+        }
+
+        // Update board
     }
 
 

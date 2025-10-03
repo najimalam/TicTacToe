@@ -7,7 +7,7 @@ public class Move {
 
     public Move(Player player, int row, int col) {
         this.player = player;
-        this.cell = new Cell(row, col, player);
+        this.cell = new Cell(row, col);
     }
     
     public Cell getCell() {

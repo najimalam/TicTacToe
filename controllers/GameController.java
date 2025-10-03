@@ -3,6 +3,7 @@ package controllers;
 import java.nio.InvalidMarkException;
 import java.util.List;
 
+import exceptions.InvalidMoveException;
 import models.*;
 
 public class GameController {
@@ -24,8 +25,8 @@ public class GameController {
         board.printBoard();
     }
     //make move
-    public void makeMove(Game game) throws InvalidMarkException{
-        game.getMoves();
+    public void makeMove(Game game) throws InvalidMoveException{
+        game.makeMove();
     }
     //game state
     public GameState getGameState(Game game){

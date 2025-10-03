@@ -7,11 +7,10 @@ public class Cell {
     private CellState state;
     private Player player;
 
-    public Cell(int row, int col, Player player) {
+    public Cell(int row, int col) {
         this.row = row;
         this.col = col;
-        this.player = player;
-        this.state = CellState.FILLED;
+        this.state = CellState.EMPTY;
     }
     
     public Player getPlayer() {
